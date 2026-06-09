@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const dotenv = require('dotenv');
 
-dotenv.config();
+dotenv.config({ path: require('path').resolve(__dirname, '../.env') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';

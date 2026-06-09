@@ -6,7 +6,7 @@ const leaderboardRouter = require('./routes/leaderboard');
 const aiRouter = require('./routes/ai');
 
 // Load environment variables
-dotenv.config();
+dotenv.config({ path: require('path').resolve(__dirname, '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
