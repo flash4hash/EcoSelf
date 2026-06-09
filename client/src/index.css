@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #2D6A4F;
+  --color-forest-dark: #1B4332;
+  --color-sage: #74C69D;
+  --color-sage-light: #D8F3DC;
+  --color-offwhite: #F8F9F0;
+  --color-charcoal: #1B2A1E;
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-leaf-1 {
+  animation: float 20s linear infinite;
+}
+
+.animate-leaf-2 {
+  animation: float 25s linear infinite;
+  animation-delay: 4s;
+}
+
+.animate-leaf-3 {
+  animation: float 18s linear infinite;
+  animation-delay: 8s;
+}
+
+.animate-leaf-4 {
+  animation: float 22s linear infinite;
+  animation-delay: 12s;
+}
+
+/* Custom Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F9F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #74C69D;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2D6A4F;
+}
+
+/* Interactive Card Hover Effects */
+.premium-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(45, 106, 79, 0.15);
+}

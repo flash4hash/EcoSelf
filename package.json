@@ -1,0 +1,19 @@
+{
+  "name": "ecoself",
+  "version": "1.0.0",
+  "description": "EcoSelf - Carbon Footprint Awareness Platform for Indian Users",
+  "main": "server/index.js",
+  "scripts": {
+    "install:client": "npm install --prefix client",
+    "install:server": "npm install --prefix server",
+    "install-all": "npm install && npm run install:client && npm run install:server",
+    "server": "node server/index.js",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build:client": "npm run build --prefix client",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
