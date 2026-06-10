@@ -4,14 +4,10 @@
   "description": "EcoSelf - Carbon Footprint Awareness Platform for Indian Users",
   "main": "server/index.js",
   "scripts": {
-    "install:client": "npm install --prefix client",
-    "install:server": "npm install --prefix server",
-    "install-all": "npm install && npm run install:client && npm run install:server",
-    "server": "node server/index.js",
-    "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build:client": "npm run build --prefix client",
-    "start": "node server/index.js"
+    "build": "cd client && npm install && npm run build",
+    "start": "node server/index.js",
+    "dev": "concurrently \"cd client && npm run dev\" \"cd server && node index.js\"",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
