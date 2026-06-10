@@ -1,4 +1,4 @@
-@import url("tailwindcss");
+@import "tailwindcss";
 
 @theme {
   --color-forest: #2D6A4F;
