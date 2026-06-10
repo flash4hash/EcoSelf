@@ -58,7 +58,7 @@ EcoSelf is built around three core principles:
  
 ## 🚀 Live Demo
 <!-- Add your deployed URL here if available -->
-> Coming soon / [Deploy instructions below](#getting-started)
+> Coming soon / [Deploy instructions below](#-getting-started)
  
 ---
 
