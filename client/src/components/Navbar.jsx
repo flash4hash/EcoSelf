@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Leaf, Menu, X, Trophy } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 export function Navbar({ ecoScore }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,6 +60,9 @@ export function Navbar({ ecoScore }) {
             <div 
               className="flex items-center space-x-1 bg-[#1B4332] border border-[#74C69D]/30 px-3 py-1.5 rounded-full text-sm font-semibold shadow-inner"
               title="Your Eco Score"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-label={`Your Eco Score: ${ecoScore} out of 100`}
             >
               <Trophy className="w-4 h-4 text-[#74C69D]" />
               <span className="text-[#74C69D] mr-1">Score:</span>
@@ -104,5 +108,9 @@ export function Navbar({ ecoScore }) {
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  ecoScore: PropTypes.number.isRequired,
+};
 
 export default Navbar;

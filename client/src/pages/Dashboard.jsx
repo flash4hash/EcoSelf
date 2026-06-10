@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Brain, TreePine, Sparkles, ChevronRight, TrendingDown, ClipboardList } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 export function Dashboard({ ecoScore, activeActions, completedActions, latestResults, latestInputs }) {
   const navigate = useNavigate();
@@ -382,5 +383,13 @@ export function Dashboard({ ecoScore, activeActions, completedActions, latestRes
     </div>
   );
 }
+
+Dashboard.propTypes = {
+  ecoScore: PropTypes.number.isRequired,
+  activeActions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  completedActions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  latestResults: PropTypes.object,
+  latestInputs: PropTypes.object,
+};
 
 export default Dashboard;

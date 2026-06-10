@@ -7,13 +7,13 @@ let isInMemory = false;
 // Mock database in-memory storage (failsafe fallback)
 const inMemoryStore = {
   pledges: [
-    { id: 4, name: 'Vikram Singh', pledge: 'Refusing all single-use plastics and carrying a metal bottle everywhere. 🚫🥤', created_at: new Date(Date.now() - 1000 * 60 * 10).toISOString() },
-    { id: 3, name: 'Ananya Iyer', pledge: 'I am going completely dairy-free starting this Tuesday. 🥛❌', created_at: new Date(Date.now() - 1000 * 60 * 20).toISOString() },
-    { id: 2, name: 'Priya Sharma', pledge: 'Switching all lights in my home to energy-efficient LEDs! 💡', created_at: new Date(Date.now() - 1000 * 60 * 30).toISOString() },
-    { id: 1, name: 'Aarav Mehta', pledge: 'I pledge to cycle for all grocery runs under 2km! 🚲', created_at: new Date(Date.now() - 1000 * 60 * 40).toISOString() }
+    { id: 4, name: 'Rohan K', pledge: 'Turning off all standby appliances at the wall every night before bed.', created_at: new Date(Date.now() - 1000 * 60 * 10).toISOString() },
+    { id: 3, name: 'Anjali R', pledge: 'No single-use plastic bags for the entire month. Cloth bag everywhere!', created_at: new Date(Date.now() - 1000 * 60 * 20).toISOString() },
+    { id: 2, name: 'Vikram M', pledge: 'Switching to a vegetarian diet for 3 days each week starting today. 🌱', created_at: new Date(Date.now() - 1000 * 60 * 30).toISOString() },
+    { id: 1, name: 'Priya S', pledge: 'I pledge to take the metro every day instead of driving my car this month!', created_at: new Date(Date.now() - 1000 * 60 * 40).toISOString() }
   ],
   leaderboard: [
-    { id: 1, name: 'Aarav Mehta', score: 95, is_mock: 1 },
+    { id: 1, name: 'EcoSelf Demo', score: 95, is_mock: 1 },
     { id: 2, name: 'Priya Sharma', score: 90, is_mock: 1 },
     { id: 3, name: 'Vikram Singh', score: 86, is_mock: 1 },
     { id: 4, name: 'Ananya Iyer', score: 82, is_mock: 1 },

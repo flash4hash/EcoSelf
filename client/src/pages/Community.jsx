@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Send, Twitter, ShieldAlert, Award, Calendar } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 export function Community({ ecoScore, activeActions, latestResults }) {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -8,6 +9,7 @@ export function Community({ ecoScore, activeActions, latestResults }) {
   const [userName, setUserName] = useState('');
   const [isSubmittingPledge, setIsSubmittingPledge] = useState(false);
   const [pledgeError, setPledgeError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   // Weekly Challenges
   const challenges = [
@@ -29,6 +31,7 @@ export function Community({ ecoScore, activeActions, latestResults }) {
 
   // Fetch leaderboard & pledges
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       // 1. Sync current user score first if they have a name
       const profile = JSON.parse(localStorage.getItem('ecoProfile') || '{}');
@@ -55,6 +58,8 @@ export function Community({ ecoScore, activeActions, latestResults }) {
       }
     } catch (err) {
       console.error('Error fetching community data:', err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -108,6 +113,14 @@ export function Community({ ecoScore, activeActions, latestResults }) {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
     window.open(twitterUrl, '_blank', 'noopener,noreferrer');
   };
+
+  if (isLoading) return (
+    <div className="max-w-7xl mx-auto px-4 py-12 space-y-4" aria-label="Loading community data">
+      {[1,2,3].map(i => (
+        <div key={i} className="h-16 bg-gray-100 rounded-2xl animate-pulse" aria-hidden="true" />
+      ))}
+    </div>
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 space-y-8">
@@ -275,5 +288,11 @@ export function Community({ ecoScore, activeActions, latestResults }) {
     </div>
   );
 }
+
+Community.propTypes = {
+  ecoScore: PropTypes.number.isRequired,
+  activeActions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  latestResults: PropTypes.object,
+};
 
 export default Community;

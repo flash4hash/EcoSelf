@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, Check, Info, ShieldAlert, Award } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 export const ALL_ACTIONS = [
   // Transport
@@ -231,5 +232,11 @@ export function ActionHub({ activeActionIds, onToggleAction, latestResults }) {
     </div>
   );
 }
+
+ActionHub.propTypes = {
+  activeActionIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onToggleAction: PropTypes.func.isRequired,
+  latestResults: PropTypes.object,
+};
 
 export default ActionHub;

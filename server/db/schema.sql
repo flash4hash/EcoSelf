@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS leaderboard (
 );
 
 -- Seed mock leaderboard entries (9 entries, leaving room for user)
-INSERT INTO leaderboard (name, score, is_mock) VALUES ('Aarav Mehta', 95, 1);
+INSERT INTO leaderboard (name, score, is_mock) VALUES ('EcoSelf Demo', 95, 1);
 INSERT INTO leaderboard (name, score, is_mock) VALUES ('Priya Sharma', 90, 1);
 INSERT INTO leaderboard (name, score, is_mock) VALUES ('Vikram Singh', 86, 1);
 INSERT INTO leaderboard (name, score, is_mock) VALUES ('Ananya Iyer', 82, 1);
@@ -26,7 +26,7 @@ INSERT INTO leaderboard (name, score, is_mock) VALUES ('Sneha Reddy', 65, 1);
 INSERT INTO leaderboard (name, score, is_mock) VALUES ('Kabir Joshi', 60, 1);
 
 -- Seed mock pledges
-INSERT INTO pledges (name, pledge) VALUES ('Aarav Mehta', 'I pledge to cycle for all grocery runs under 2km! 🚲');
-INSERT INTO pledges (name, pledge) VALUES ('Priya Sharma', 'Switching all lights in my home to energy-efficient LEDs! 💡');
-INSERT INTO pledges (name, pledge) VALUES ('Ananya Iyer', 'I am going completely dairy-free starting this Tuesday. 🥛❌');
-INSERT INTO pledges (name, pledge) VALUES ('Vikram Singh', 'Refusing all single-use plastics and carrying a metal bottle everywhere. 🚫🥤');
+INSERT INTO pledges (name, pledge) VALUES ('Priya S', 'I pledge to take the metro every day instead of driving my car this month!');
+INSERT INTO pledges (name, pledge) VALUES ('Vikram M', 'Switching to a vegetarian diet for 3 days each week starting today. 🌱');
+INSERT INTO pledges (name, pledge) VALUES ('Anjali R', 'No single-use plastic bags for the entire month. Cloth bag everywhere!');
+INSERT INTO pledges (name, pledge) VALUES ('Rohan K', 'Turning off all standby appliances at the wall every night before bed.');

@@ -262,8 +262,9 @@ export function Calculator({ onSaveResults }) {
                       value={formData.energy.electricityBill}
                       onChange={e => handleNestedChange('energy', 'electricityBill', e.target.value)}
                       className="w-full px-4 py-3 bg-gray-55 border border-gray-300 rounded-xl focus:outline-none focus:border-[#2D6A4F] focus:ring-1 focus:ring-[#2D6A4F]"
+                      aria-describedby="elec-hint"
                     />
-                    <p className="text-xs text-gray-400 mt-1">Converted to kWh at average tariff rate of ₹7.00/kWh.</p>
+                    <p id="elec-hint" className="text-xs text-gray-400 mt-1">Check your monthly electricity bill slip for the total ₹ amount.</p>
                   </div>
                   <div>
                     <label htmlFor="householdSize" className="block text-sm font-bold text-gray-700 mb-2">Household Size (Number of members)</label>
@@ -306,7 +307,9 @@ export function Calculator({ onSaveResults }) {
                         value={formData.energy.lpgCylinders}
                         onChange={e => handleNestedChange('energy', 'lpgCylinders', e.target.value)}
                         className="w-full px-4 py-3 bg-gray-55 border border-gray-300 rounded-xl focus:outline-none focus:border-[#2D6A4F] focus:ring-1 focus:ring-[#2D6A4F]"
+                        aria-describedby="lpg-hint"
                       />
+                      <p id="lpg-hint" className="text-xs text-gray-400 mt-1">Count the number of 14.2 kg LPG cylinders you use per month.</p>
                     </div>
                   )}
                 </div>
