@@ -5,6 +5,8 @@ const pledgesRouter = require('./routes/pledges');
 const leaderboardRouter = require('./routes/leaderboard');
 const aiRouter = require('./routes/ai');
 
+const helmet = require('helmet');
+
 // Load environment variables
 dotenv.config({ path: require('path').resolve(__dirname, '.env') });
 
@@ -12,7 +14,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(helmet());
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? [process.env.FRONTEND_URL || 'https://ecoself.onrender.com']
+  : ['http://localhost:5173', 'http://localhost:3000'];
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
 app.use(express.json());
 
 // Routes

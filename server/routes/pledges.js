@@ -2,7 +2,14 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/db');
 
-const pledgeRateLimit = new Map();
+const rateLimit = require('express-rate-limit');
+const pledgeLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 3,
+  message: { error: 'Too many pledges. Please wait a minute.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // GET /api/pledges - Retrieve the 10 most recent pledges
 router.get('/', (req, res) => {
@@ -16,7 +23,7 @@ router.get('/', (req, res) => {
 });
 
 // POST /api/pledges - Submit a new pledge with input sanitization and length limit
-router.post('/', (req, res) => {
+router.post('/', pledgeLimiter, (req, res) => {
   try {
     const { name, pledge } = req.body;
 
@@ -46,20 +53,11 @@ router.post('/', (req, res) => {
       return res.status(400).json({ error: 'Please keep pledges clean and respectful.' });
     }
 
-    const ip = req.ip || req.connection.remoteAddress;
-    const now = Date.now();
-    if (pledgeRateLimit.has(ip)) {
-      const lastPledgeTime = pledgeRateLimit.get(ip);
-      if (now - lastPledgeTime < 60000) {
-        return res.status(429).json({ error: 'Please wait a minute before submitting another pledge.' });
-      }
-    }
-    pledgeRateLimit.set(ip, now);
-
     // Insert into DB
-    db.prepare('INSERT INTO pledges (name, pledge) VALUES (?, ?)').run(sanitizedName, sanitizedPledge);
+    const trimmedName = sanitizedName.slice(0, 50);
+    db.prepare('INSERT INTO pledges (name, pledge) VALUES (?, ?)').run(trimmedName, sanitizedPledge);
 
-    res.status(201).json({ message: 'Pledge submitted successfully', pledge: { name: sanitizedName, pledge: sanitizedPledge } });
+    res.status(201).json({ message: 'Pledge submitted successfully', pledge: { name: trimmedName, pledge: sanitizedPledge } });
   } catch (error) {
     console.error('Error saving pledge:', error.message);
     res.status(500).json({ error: 'Failed to save pledge' });

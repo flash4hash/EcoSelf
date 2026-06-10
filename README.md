@@ -140,3 +140,5 @@ All calculations are executed in kilograms of $CO_2$ equivalent ($kg\ CO_2e$) pe
 - **Database Safety Fallback**: Primarily attempts to use `better-sqlite3`. If installation fails on Windows, it catches the error and stores data in a thread-safe, in-memory JS store, preventing server crashes.
 - **XSS Protection**: Submissions to the Community Pledge Wall are stripped of all HTML tag structures (`replace(/<[^>]*>/g, '')`) and trimmed, ensuring safe rendering.
 - **API Guardrails**: The chatbot system prompt is hardcoded to redirect user messages strictly back to sustainability and carbon footprint topics if off-topic requests are detected.
+- **HTTP Security Headers**: helmet.js middleware enforces X-Frame-Options: DENY, X-Content-Type-Options: nosniff, Strict-Transport-Security, and 8 other OWASP-recommended headers on all server responses.
+- **Rate Limiting**: The pledge wall POST endpoint is rate-limited to 3 requests per minute per IP address using express-rate-limit, preventing spam and abuse.
