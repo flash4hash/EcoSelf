@@ -7,13 +7,19 @@ export function Landing() {
   const [emissions, setEmissions] = useState(0);
 
   useEffect(() => {
-    const ratePerMs = 91.95; // 91,950 kg CO2 per second / 1000 = 91.95 kg per ms
+    // India's annual CO2 emissions are roughly 2.9 billion metric tonnes (2,900,000,000,000 kg)
+    const annualEmissionsKg = 2900000000000; 
     
     const updateEmissions = () => {
       const now = new Date();
-      const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const msElapsed = now - midnight;
-      const currentEmissions = 7945205479 * (msElapsed / 86400000);
+      const startOfYear = new Date(now.getFullYear(), 0, 1);
+      
+      const isLeapYear = (now.getFullYear() % 4 === 0 && now.getFullYear() % 100 !== 0) || (now.getFullYear() % 400 === 0);
+      const daysInYear = isLeapYear ? 366 : 365;
+      const msInYear = daysInYear * 24 * 60 * 60 * 1000;
+      
+      const msElapsed = now - startOfYear;
+      const currentEmissions = annualEmissionsKg * (msElapsed / msInYear);
       setEmissions(Math.round(currentEmissions));
     };
 
@@ -51,7 +57,7 @@ export function Landing() {
           <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#2D6A4F]/10 rounded-full blur-2xl"></div>
 
           <h2 className="text-xs font-bold uppercase tracking-widest text-[#2D6A4F] mb-4">
-            India's Estimated CO₂ Emissions Today
+            India's Estimated CO₂ Emissions This Year
           </h2>
           
           <div className="font-mono text-3xl sm:text-5xl font-black text-[#1B2A1E] tabular-nums tracking-wide mb-3 flex justify-center items-baseline gap-1.5">
@@ -60,7 +66,7 @@ export function Landing() {
           </div>
 
           <p className="text-xs text-gray-400">
-            Ticking at ~91,950 kg per second based on Central Electricity Authority & national averages.
+            Ticking at ~91,950 kg per second based on national averages for {new Date().getFullYear()}.
           </p>
         </div>
 

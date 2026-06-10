@@ -4,6 +4,64 @@ EcoSelf is a comprehensive, AI-powered Carbon Footprint Awareness Platform desig
 
 ---
 
+## 🎯 Challenge Vertical
+**[Challenge 3] Carbon Footprint Awareness Platform** — Hack2Skill × Google PromptWars India 2026
+ 
+---
+ 
+## 🧠 Approach & Logic
+ 
+EcoSelf is built around three core principles:
+ 
+1. **Client-side calculations for instant feedback** — All carbon math runs in the browser using `calculateFootprint.js` with IPCC AR6 emission factors. No round-trip to a server means results appear instantly after the 4-step wizard.
+2. **Persistence without authentication** — User profile, completed actions, and footprint history are stored in `localStorage`. This keeps the app friction-free (no sign-up required) while maintaining state across sessions.
+3. **AI as advisor, not gimmick** — Four Gemini-powered features (Eco Advisor, Action Recommender, EcoBot Chatbot, Weekly Report) are each independently failable. If Gemini is unavailable, every feature has a real algorithmic fallback — not a placeholder error.
+4. **India-first data** — Emission factors use CEA India's grid intensity (0.82 kg CO₂e/kWh), ₹7/kWh average electricity tariff, and LPG cylinder specs specific to India's 14.2 kg standard cylinder.
+---
+ 
+## 🔄 How It Works
+ 
+1. **Calculate** — User completes a 4-step form (Transport → Home Energy → Diet → Lifestyle). Results show as a donut chart breakdown in kg CO₂e/year.
+2. **Track** — Dashboard shows monthly trend, category breakdown bar chart, and comparison against India average (1,900 kg/year) and global average (4,700 kg/year).
+3. **Reduce** — Action Hub lists 20 eco-actions with CO₂ savings. AI recommends the 5 highest-impact next steps based on the user's specific footprint profile.
+4. **Learn** — Educational hub covers Scope 1/2/3 emissions, 8 India-specific comparison facts, and a 6-question climate science FAQ.
+5. **Community** — Pledge wall (SQLite-backed), leaderboard with live Eco Score sync, rotating weekly challenge, and a pre-filled Twitter/X share button.
+6. **Profile** — Badge system (4 tiers), score sparkline, text report export, and AI-generated weekly sustainability report via modal.
+---
+ 
+## 📌 Assumptions Made
+ 
+- Electricity tariff assumed at **₹7.00/kWh** (national average across residential tariff slabs; actual rates vary by state and DISCOM).
+- Public transport emission factor is **0.05 kg CO₂e per passenger-hour** (weighted average of Indian city bus and metro systems; not per km, as trip distances vary widely).
+- Domestic flight average distance assumed **~1,000 km** per flight; international average **~4,000 km** per flight.
+- Diet emission values are **annual totals** (kg CO₂e/person/year) based on IPCC AR6 Table 7.1 food system emissions, adjusted for Indian dietary patterns.
+- LPG cylinder assumed to be the standard **14.2 kg Indian cylinder** (BPL/domestic category).
+- Household electricity and cooking emissions are divided equally by household size to derive per-capita figures.
+- Mock leaderboard data (Aarav Mehta, Priya Sharma, etc.) is seeded on first DB initialization to demonstrate community features.
+- Monthly CO₂ figures on the Dashboard are derived by dividing annual calculator results by 12.
+---
+ 
+## 🖼️ Screenshots
+ 
+<!-- Add your screenshots here after uploading to the repo -->
+<!-- Suggested: add a /screenshots folder to your repo and reference like below -->
+ 
+| Home | Dashboard | Action Hub |
+|------|-----------|------------|
+| ![Home](screenshots/home.png) | ![Dashboard](screenshots/dashboard.png) | ![ActionHub](screenshots/actionhub.png) |
+ 
+| Calculator | Learn | Community |
+|------------|-------|-----------|
+| ![Calculator](screenshots/calculator.png) | ![Learn](screenshots/learn.png) | ![Community](screenshots/community.png) |
+ 
+---
+ 
+## 🚀 Live Demo
+<!-- Add your deployed URL here if available -->
+> Coming soon / [Deploy instructions below](#getting-started)
+ 
+---
+
 ## 🚀 Getting Started
 
 ### 1. Prerequisites

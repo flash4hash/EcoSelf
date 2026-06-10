@@ -101,6 +101,23 @@ try {
             }
             return { changes: 1 };
           }
+          if (normalizedSql.includes('delete from leaderboard')) {
+            let nameToDelete;
+            if (normalizedSql.includes('where name = "you"')) {
+              nameToDelete = 'You';
+            } else if (args.length > 0) {
+              nameToDelete = args[0];
+            }
+
+            if (nameToDelete) {
+              const initialLength = inMemoryStore.leaderboard.length;
+              inMemoryStore.leaderboard = inMemoryStore.leaderboard.filter(
+                entry => entry.name.toLowerCase() !== nameToDelete.toLowerCase()
+              );
+              return { changes: initialLength - inMemoryStore.leaderboard.length };
+            }
+            return { changes: 0 };
+          }
           return { changes: 0 };
         }
       };
