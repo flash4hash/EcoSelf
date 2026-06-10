@@ -169,7 +169,7 @@ export function ActionHub({ activeActionIds, onToggleAction, latestResults }) {
             >
               {/* Recommended Badge */}
               {isRecommended && (
-                <span className="absolute top-4 right-4 bg-[#2D6A4F] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+                <span className="absolute top-4 right-4 bg-[#2D6A4F] text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
                   Recommended for you
                 </span>
               )}

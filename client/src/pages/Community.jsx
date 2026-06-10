@@ -206,7 +206,7 @@ export function Community({ ecoScore, activeActions, latestResults }) {
             </form>
 
             {/* List of pledges */}
-            <div className="space-y-3 pt-4 border-t border-gray-100 min-h-[400px] max-h-[500px] overflow-y-auto pr-1">
+            <div className="space-y-3 pt-4 border-t border-gray-100 max-h-[250px] sm:max-h-[350px] overflow-y-auto pr-1">
               <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Recent Pledges</h3>
               {pledges.length === 0 ? (
                 <div className="text-center py-6 text-sm text-gray-400 italic">No pledges logged yet. Be the first to pledge!</div>

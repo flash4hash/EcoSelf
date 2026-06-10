@@ -60,7 +60,7 @@ export function Landing() {
             India's Estimated CO₂ Emissions This Year
           </h2>
           
-          <div className="font-mono text-3xl sm:text-5xl font-black text-[#1B2A1E] tabular-nums tracking-wide mb-3 flex justify-center items-baseline gap-1.5">
+          <div className="font-mono text-2xl sm:text-4xl md:text-5xl font-black text-[#1B2A1E] tabular-nums tracking-wide mb-3 flex flex-wrap justify-center items-baseline gap-1.5 break-all">
             {emissions.toLocaleString('en-IN')}
             <span className="text-lg font-bold text-gray-500">kg</span>
           </div>
@@ -77,7 +77,7 @@ export function Landing() {
         >
           <span>Calculate My Footprint</span>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
         </Link>
       </main>
