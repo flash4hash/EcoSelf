@@ -96,6 +96,21 @@ npm run dev
 - **Frontend** runs on: `http://localhost:5173`
 - **Backend API** runs on: `http://localhost:5000`
 
+### 5. Testing
+The application includes a comprehensive test suite covering the calculator logic, emission factors, validators, and backend API integration.
+
+To run all client and server unit tests:
+```bash
+npm run test:all
+```
+
+**Individual Test Suites:**
+- **Client Footprint Logic**: `npm run test`
+- **Emission Factors Consistency**: `npm run test:factors`
+- **Calculator Edge Cases**: `npm run test:edge`
+- **Server Input Validators**: `npm run test:validators`
+- **Server API Integration**: `npm run test:api` *(Note: requires the backend server to be running first via `node server/index.js` or `npm run dev`)*
+
 ---
 
 ## 🧮 Carbon Footprint Calculation Methodology
