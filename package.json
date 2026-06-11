@@ -8,6 +8,7 @@
     "start": "node server/index.js",
     "dev": "concurrently \"cd client && npm run dev\" \"cd server && node index.js\"",
     "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "test": "npm run test --prefix client",
     "test:calc": "cd client && node src/utils/calculateFootprint.test.js",
     "test:api": "node server/tests/api.test.js"
   },
