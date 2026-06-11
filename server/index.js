@@ -6,6 +6,8 @@ const leaderboardRouter = require('./routes/leaderboard');
 const aiRouter = require('./routes/ai');
 
 const helmet = require('helmet');
+const requestLogger = require('./middleware/requestLogger');
+const errorHandler = require('./middleware/errorHandler');
 
 // Load environment variables
 dotenv.config({ path: require('path').resolve(__dirname, '.env') });
@@ -15,6 +17,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(helmet());
+app.use(requestLogger);
 const allowedOrigins = process.env.NODE_ENV === 'production'
   ? [process.env.FRONTEND_URL || 'https://ecoself.onrender.com']
   : ['http://localhost:5173', 'http://localhost:3000'];
@@ -31,10 +34,7 @@ app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/ai', aiRouter);
 
 // Global Error Handler
-app.use((err, req, res, next) => {
-  console.error('Unhandled server error:', err);
-  res.status(500).json({ error: 'Internal server error occurred' });
-});
+app.use(errorHandler);
 
 // Serve React build in production
 const path = require('path');
