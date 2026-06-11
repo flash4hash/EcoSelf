@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "node src/utils/calculateFootprint.test.js"
+    "test": "node src/utils/calculateFootprint.test.js",
+    "test:edge": "node src/utils/edgeCases.test.js",
+    "test:factors": "node src/utils/emissionFactors.test.js"
   },
   "dependencies": {
     "lucide-react": "^0.379.0",

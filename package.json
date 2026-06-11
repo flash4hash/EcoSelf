@@ -10,7 +10,11 @@
     "install-all": "npm install && cd client && npm install && cd ../server && npm install",
     "test": "npm run test --prefix client",
     "test:calc": "cd client && node src/utils/calculateFootprint.test.js",
-    "test:api": "node server/tests/api.test.js"
+    "test:api": "node server/tests/api.test.js",
+    "test:validators": "node server/tests/validators.test.js",
+    "test:factors": "cd client && node src/utils/emissionFactors.test.js",
+    "test:edge": "cd client && node src/utils/edgeCases.test.js",
+    "test:all": "npm run test && npm run test:validators"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
