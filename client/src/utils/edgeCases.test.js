@@ -20,9 +20,11 @@ const baseFormData = {
     pngBill: 0,
     householdSize: 1
   },
+  diet: {
+    dietType: 'vegan',
+    foodWaste: 'none'
+  },
   lifestyle: {
-    diet: 'vegan',
-    foodWaste: 'none',
     shoppingOrders: 0,
     streamingHours: 0,
     singleUsePlastic: 'none'
@@ -39,8 +41,8 @@ function testVeganZeroWaste() {
 
 function testRegularMeatHighWaste() {
   const data = JSON.parse(JSON.stringify(baseFormData));
-  data.lifestyle.diet = 'regular_meat';
-  data.lifestyle.foodWaste = 'high';
+  data.diet.dietType = 'regular_meat';
+  data.diet.foodWaste = 'high';
   const results = calculateFootprint(data);
   assert.strictEqual(results.diet, 3100);
   console.log('PASS: testRegularMeatHighWaste');
@@ -105,11 +107,11 @@ function testPlasticOften() {
 
 function testHouseholdSizeFourVsOne() {
   const data1 = JSON.parse(JSON.stringify(baseFormData));
-  data1.energy.electricityBill = 4000;
+  data1.energy.electricityBill = 7000;
   const singlePerson = calculateFootprint(data1);
 
   const data4 = JSON.parse(JSON.stringify(baseFormData));
-  data4.energy.electricityBill = 4000;
+  data4.energy.electricityBill = 7000;
   data4.energy.householdSize = 4;
   const fourPerson = calculateFootprint(data4);
 

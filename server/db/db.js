@@ -43,6 +43,17 @@ try {
     prepare: (sql) => {
       const normalizedSql = sql.toLowerCase().trim();
       return {
+        get: (...args) => {
+          if (normalizedSql.includes('from leaderboard') && normalizedSql.includes('name =')) {
+            const name = args[0];
+            if (!name) return undefined;
+            const entry = inMemoryStore.leaderboard.find(
+              e => e.name.toLowerCase() === name.toLowerCase() && !e.is_mock
+            );
+            return entry ? { id: entry.id } : undefined;
+          }
+          return undefined;
+        },
         all: (...args) => {
           if (normalizedSql.includes('from pledges')) {
             // Return top 10 recent pledges
@@ -75,29 +86,31 @@ try {
           if (normalizedSql.includes('insert into leaderboard') || 
               normalizedSql.includes('replace into leaderboard') ||
               normalizedSql.includes('update leaderboard')) {
-            // args: [name, score] or [score, name] depending on query.
-            // Let's assume standard INSERT OR REPLACE or dynamic check
-            let name, score;
-            if (normalizedSql.includes('replace into leaderboard') || normalizedSql.includes('insert into leaderboard')) {
-              name = args[0];
-              score = args[1];
-            } else if (normalizedSql.includes('update leaderboard')) {
-              // UPDATE leaderboard SET score = ? WHERE name = ?
-              score = args[0];
-              name = args[1];
-            }
-            
-            const existingIndex = inMemoryStore.leaderboard.findIndex(entry => entry.name.toLowerCase() === name.toLowerCase());
-            if (existingIndex !== -1) {
-              inMemoryStore.leaderboard[existingIndex].score = score;
-              inMemoryStore.leaderboard[existingIndex].is_mock = 0;
+            if (normalizedSql.includes('update leaderboard')) {
+              // UPDATE leaderboard SET score = ? WHERE id = ?
+              const score = args[0];
+              const id = args[1];
+              const existingIndex = inMemoryStore.leaderboard.findIndex(entry => entry.id === id);
+              if (existingIndex !== -1) {
+                inMemoryStore.leaderboard[existingIndex].score = score;
+                inMemoryStore.leaderboard[existingIndex].is_mock = 0;
+              }
             } else {
-              inMemoryStore.leaderboard.push({
-                id: inMemoryStore.leaderboard.length + 1,
-                name,
-                score,
-                is_mock: 0
-              });
+              // INSERT INTO leaderboard (name, score, is_mock) VALUES (?, ?, 0)
+              const name = args[0];
+              const score = args[1];
+              const existingIndex = inMemoryStore.leaderboard.findIndex(entry => entry.name.toLowerCase() === name.toLowerCase());
+              if (existingIndex !== -1) {
+                inMemoryStore.leaderboard[existingIndex].score = score;
+                inMemoryStore.leaderboard[existingIndex].is_mock = 0;
+              } else {
+                inMemoryStore.leaderboard.push({
+                  id: inMemoryStore.leaderboard.length + 1,
+                  name,
+                  score,
+                  is_mock: 0
+                });
+              }
             }
             return { changes: 1 };
           }

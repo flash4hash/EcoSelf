@@ -22,16 +22,16 @@ function testFlights() {
 }
 
 function testDietHierarchy() {
-  assert.ok(EMISSION_FACTORS.diet.regular_meat > EMISSION_FACTORS.diet.occasional_meat, 'Regular > Occasional');
-  assert.ok(EMISSION_FACTORS.diet.occasional_meat > EMISSION_FACTORS.diet.vegetarian, 'Occasional > Vegetarian');
-  assert.ok(EMISSION_FACTORS.diet.vegetarian > EMISSION_FACTORS.diet.vegan, 'Vegetarian > Vegan');
+  assert.ok(EMISSION_FACTORS.diet.types.regular_meat > EMISSION_FACTORS.diet.types.occasional_meat, 'Regular > Occasional');
+  assert.ok(EMISSION_FACTORS.diet.types.occasional_meat > EMISSION_FACTORS.diet.types.vegetarian, 'Occasional > Vegetarian');
+  assert.ok(EMISSION_FACTORS.diet.types.vegetarian > EMISSION_FACTORS.diet.types.vegan, 'Vegetarian > Vegan');
   console.log('PASS: testDietHierarchy');
   passed++;
 }
 
 function testFoodWasteHierarchy() {
-  assert.ok(EMISSION_FACTORS.waste.food.high > EMISSION_FACTORS.waste.food.medium, 'High > Medium waste');
-  assert.ok(EMISSION_FACTORS.waste.food.medium > EMISSION_FACTORS.waste.food.low, 'Medium > Low waste');
+  assert.ok(EMISSION_FACTORS.diet.waste.high > EMISSION_FACTORS.diet.waste.medium, 'High > Medium waste');
+  assert.ok(EMISSION_FACTORS.diet.waste.medium > EMISSION_FACTORS.diet.waste.low, 'Medium > Low waste');
   console.log('PASS: testFoodWasteHierarchy');
   passed++;
 }

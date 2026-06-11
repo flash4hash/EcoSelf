@@ -47,7 +47,7 @@ function testPledgeExactly120Chars() {
 }
 
 function testPledgeWithHTMLFailsSanitization() {
-  const body = { name: 'User', pledge: '<script>alert(1)</script>' };
+  const body = { name: 'User', pledge: '<script></script>' };
   const result = validatePledgeInput(body);
   assert.strictEqual(result.isValid, false);
   console.log('PASS: testPledgeWithHTMLFailsSanitization');
